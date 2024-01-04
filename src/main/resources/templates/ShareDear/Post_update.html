@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<div th:replace="~{ShareDear/fragments/CommonComp :: headerComp}"></div>
+
+<body>
+
+<div th:replace="~{ShareDear/fragments/CommonComp :: navbarComp}"></div>
+
+    <div class="p-5 postUpdate m-4 rounded">
+<!--        <div th:if="${param.Result == 'success'}">Success</div>-->
+
+
+<!--        <div th:if="${theSession.result != null}">-->
+<!--            <p>[[${theSession.result}]}</p>-->
+<!--            <span th:text="${#theSession.removeAttribute('result')}"></span>-->
+<!--        </div>-->
+        <p class="h2 text-light mb-5">Share your Thaughts and Memories....</p>
+        <div class="m-2 p-2">
+            <form action="" th:action="@{/upload}" th:object="${mypost}" method="post" enctype="multipart/form-data">
+<!--                <input type="hidden" name="UserId" value="" th:field="*{user_id.id}">-->
+
+                <div class="row">
+                    <div class="col-md-4 p-3">
+                        <label class="text-light" for="post-img">Select image to upload :</label>
+                        <input type="file" name="post-img" id="post-img">
+<!--                        <img src="" th:src="@{'/post_images/'+${mypost.img_loc}}" alt="hi">-->
+<!--                        <span th:text="*{img}"></span>-->
+                    </div>
+                    <div class="col-md-8 p-3">
+                        <div>
+                            <label class="text-light" for="comment">Post a new Update :</label>
+                            <textarea class="form-control mt-2" cols="5" id="comment" name="content" th:field="*{content}"></textarea>
+                        </div>
+                        <div>
+                            <label class="text-light" for="tags"> Add Tags : </label>
+                            <textarea class="form-control mt-2" cols="5" id="tags" name="tags" th:field="*{tag}"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center">
+                    <div>
+                        <button type="reset" class="myButton cancelActionButton">Clear</button>
+                        <button type="submit" class="myButton">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

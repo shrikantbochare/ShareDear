@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<div th:replace="~{ShareDear/fragments/CommonComp :: headerComp}"></div>
+
+<body>
+
+<div th:replace="~{ShareDear/fragments/CommonComp :: navbarComp}"></div>
+
+
+
+    <div th:if="${noData == 'yes'}"><h3 class="text-center text-dark">No User Found!!!</h3></div>
+    <div th:if="${noData != 'yes'}">
+        <div class=" mt-3 d-flex justify-content-center" th:each="user : ${allUsers}">
+
+            <div class="user row rounded w-75 p-2 postUpdate">
+                <div th:replace="~{ShareDear/fragments/CommonComp :: profilePicComp}"></div>
+
+                <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                   <div class="text-center text-light">
+                    <h3 ><a th:href="@{/userDetails(uid = ${user.id})}" class="myLinkForFriends" th:text="${user.name}">Shrikant Bochare</a></h3>
+                       <p class="secondary-font-size">All Friends : <span ></span></p>
+                    <p class="secondary-font-size">Mutual Friends : <span ></span></p>
+                   </div>
+                </div>
+                <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                    <div  th:if="${pageName == 'friends' || pageName == 'mutualFriends'}">
+                        <a class="customLinKButton cancelActionButton" th:href="@{/removeFriend(uid = ${user.id})}">Remove</a>
+                    </div>
+                    <div  th:if="${pageName == 'requests'}">
+                        <a class="customLinKButton requestButton mx-1" th:href="@{/acceptRequest(uid = ${user.id})}">
+                            Accept</a>
+                        <a class="customLinKButton cancelActionButton mx-1" th:href="@{/rejectRequest(uid = ${user.id})}">
+                            Reject</a>
+                    </div>
+                    <div  th:if="${pageName == 'allUsers'}">
+                        <a class="customLinKButton requestButton" th:href="@{/sendRequest(uid = ${user.id})}">
+                            Add</a>
+                    </div>
+                    <div  th:if="${pageName == 'searchUser' && friend == 'yes'}">
+                        <a class="customLinKButton cancelActionButton" th:href="@{/removeFriend(uid = ${user.id})}">Remove</a>
+                    </div>
+                    <div  th:if="${pageName == 'searchUser' && friend == 'no'}">
+                        <a class="customLinKButton requestButton" th:href="@{/sendRequest(uid = ${user.id})}">
+                            Add</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div th:if="${(pageName == 'userFriends' || pageName == 'mutualFriends') && (noData != 'yes')}">
+    <div  th:replace="~{ShareDear/fragments/CommonComp :: paginationComp00}"></div>
+
+</div>
+<div th:if="${(pageName == 'friends' || pageName == 'requests' || pageName == 'allUsers' || pageName == 'searchUser') && (noData != 'yes')}">
+    <div  th:replace="~{ShareDear/fragments/CommonComp :: paginationComp}"></div>
+</div>
+
+</body>
+
+</html>

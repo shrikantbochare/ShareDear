@@ -1,0 +1,194 @@
+body
+{
+    background-image: url("../Profile_images/main_bg.jpg");
+    
+}
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    } 
+
+.secondary-font-size
+{
+    font-size: 0.7rem;
+   line-height: 0rem;
+}
+
+
+.postUpdate
+{
+    background-color: rgba(0, 0, 0, 0.356);
+}
+.post
+{
+    max-height: 50vh;
+    background-color: rgba(0, 0, 0, 0.356);
+    color: white;
+   
+}
+.postContent
+{
+    width: 59%;
+    overflow-y: auto;
+}
+.postContent::-webkit-scrollbar {
+    display: none;
+}
+.postImageContainer{
+    width: 40%;
+}
+.postImage
+{
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    padding: 0.1rem;
+}
+.postTextStyle
+{
+    font-size: 0.7rem;
+    line-height: 1rem;
+    font-weight: bold;
+}
+.postAuthor
+{
+    color: white;
+    text-decoration: none;
+}
+.postAuthor:hover
+{
+    color: rgb(205, 202, 202);
+}
+.postImageMV
+{
+    object-fit: contain;
+    max-height: 50vh;
+    width: 100%;
+    padding: 0.1rem;
+}
+
+.postMV
+{
+    max-height: 70vh;
+    width: 90vw;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.356);
+}
+.postMV::-webkit-scrollbar {
+    display: none;
+}
+.cardView
+{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 0.3rem;
+}
+.user:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 0.3rem;
+}
+.navLinkText
+{
+    color: rgb(57, 52, 52);
+    font-weight: bold;
+}
+.navLinkText:hover
+{
+    color: rgb(120, 118, 120);
+}
+.navCust
+{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    background-image: url(../Profile_images/main_bg.jpg);
+    z-index: 1000;
+}
+
+.profileForm
+{
+    z-index: -11;
+}
+
+.profile_img
+{
+    max-height : 50vh;
+}
+
+.myButton
+{
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+.myButton:hover
+{
+    background-color: rgb(60, 121, 234);
+}
+
+
+.customLinKButton
+{
+    text-decoration: none;
+    color: white;
+    padding: 0.25rem;
+    background-color: cornflowerblue;
+    border-radius: 10px;
+     text-align: center;
+
+}
+.customLinKButton:hover
+{
+   background-color: rgb(60, 121, 234);
+     color: white;
+}
+.cancelActionButton
+{
+    background-color: #ff1a1a;
+}
+.cancelActionButton:hover
+{
+    background-color:  #cc0000;
+}
+.postButton
+{
+    background-color: #1aff1a;
+}
+.postButton:hover
+{
+    background-color: #00b300;
+}
+.friendButton
+{
+     background-color: #ffd633;
+}
+.friendButton:hover
+{
+     background-color: #cca300;
+}
+.requestButton
+{
+     background-color: #00e600;
+}
+.requestButton:hover
+{
+     background-color:  #009900;
+}
+.myLinkForFriends
+{
+    text-decoration: none;
+    color: white;
+}
+
+.myLinkForFriends:hover
+{
+    color: rgb(205, 202, 202);
+}
+

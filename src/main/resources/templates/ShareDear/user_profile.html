@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<div th:replace="~{ShareDear/fragments/CommonComp :: headerComp}"></div>
+
+<body>
+<div th:replace="~{ShareDear/fragments/CommonComp :: navbarComp}"></div>
+
+    <!-- make post button only available for the friends -->
+    <div class="p-3" th:object="${user}">
+        <div class="row m-1">
+            <div class="col-md-6">
+                <h1 class="text-primary">Profile Information</h1>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <div th:if="${friend == 'yes'}">
+                   <a class="customLinKButton postButton" th:href="@{/userPosts(uid=${user.id},page=0)}">Posts</a>
+                    <a class="customLinKButton friendButton"
+                        th:href="@{/userFriends(uid=${user.id},page=0)}">Friends</a>
+                    <a class="customLinKButton requestButton" th:href="@{/mutualFriends(uid=${user.id},page=0)}">Mutual</a>
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-4 p-2">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img th:src="@{'/Profile_images/'+ ${user.profilePic.img}}" alt="" class="img-thumbnail profile_img">
+                </div>
+            </div>
+            <div class="col-md-8">
+
+                <div class="info rounded postUpdate text-light">
+                    <div class="container  p-2 mt-2" style="display : none;">
+                        <span class="spanData" th:field="*{id}">
+                            Shrikant Bochare
+                        </span>
+                    </div>
+                    <div class="container  p-2 mt-2">
+                        <span class="spanLabel">
+                            Name :
+                        </span>
+                        <span class="spanData" th:text="*{name}">
+                            Shrikant Bochare
+                        </span>
+                    </div>
+                    <div class="container  p-2 mt-2">
+                        <span class="spanLabel">
+                            UserName :
+                        </span>
+                        <span class="spanData" th:text="*{username}">
+                            @shrikant_bochare
+                        </span>
+                    </div>
+                    <div class="container p-2 mt-2">
+                        <span class="spanLabel">
+                            Email :
+                        </span>
+                        <span class="spanData" th:text="*{email}">
+                            shrikantbochare@gmail.com
+                        </span>
+                    </div>
+                    <div class="container p-2 mt-2">
+                        <span class="spanLabel">
+                            Age :
+                        </span>
+                        <span class="spanData" th:text="*{age}">
+                            24
+                        </span>
+                    </div>
+                    <div class="container  p-2 mt-2">
+                        <span class="spanLabel">
+                            Birthdate :
+                        </span>
+                        <span class="spanData">
+                            30/10/1999
+                        </span>
+                    </div>
+                    <div class="container p-2 mt-2">
+                        <span class="spanLabel">
+                            Education :
+                        </span>
+                        <span class="spanData" th:text="*{education}">
+                            B.Tech
+                        </span>
+                    </div>
+                    <div class="container p-2 mt-2">
+                        <span class="spanLabel">
+                            Occupation :
+                        </span>
+                        <span class="spanData" th:text="*{occupation}">
+                            Employee
+                        </span>
+                    </div>
+                    <div class="container  p-2 mt-2">
+                        <span class="spanLabel">
+                            Address :
+                        </span>
+                        <span class="spanData" th:text="*{address}">
+                            Vaibhav Nagar
+                        </span>
+                    </div>
+                    <div class="container  p-2 mt-2">
+                        <span class="spanLabel">
+                            City :
+                        </span>
+                        <span class="spanData" th:text="*{city}">
+                           Parbhani
+                        </span>
+                    </div>
+                    <div class="container p-2 mt-2">
+                        <span class="spanLabel">
+                            State :
+                        </span>
+                        <span class="spanData" th:text="*{state}">
+                           Maharashtra
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

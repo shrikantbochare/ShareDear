@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<body>
+<div th:replace="~{ShareDear/fragments/CommonComp :: headerComp}"></div>
+
+<div th:replace="~{ShareDear/fragments/CommonComp :: postComp}"></div>
+
+<div th:if="${(pageName == 'userPosts') && (noData != 'yes')}">
+    <div  th:replace="~{ShareDear/fragments/CommonComp :: paginationComp00}"></div>
+
+</div>
+<div th:if="${(pageName == 'home' || pageName == 'myPosts') && (noData != 'yes')}">
+    <div  th:replace="~{ShareDear/fragments/CommonComp :: paginationComp}"></div>
+</div>
+</body>
+</html>
