@@ -496,7 +496,7 @@ public class MainController {
         securityService.encryptPassword(user);
         serviceDao.saveUser(user);
         serviceDao.createProfilePic(profilePic);
-        System.out.println(user.getPassword());
+//        System.out.println(user.getPassword());
         return "redirect:/login";
     }
 
