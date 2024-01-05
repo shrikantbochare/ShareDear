@@ -40,7 +40,7 @@ public class SecurityConfig {
                         form
                                 .loginPage("/login")
                                 .permitAll()
-                                .defaultSuccessUrl("sharedear-production.up.railway.app/home?page=0")
+                                .defaultSuccessUrl("/home?page=0")
                                 .failureUrl("/login?error=true")
                 )
                 .logout(logout ->
