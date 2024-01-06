@@ -39,23 +39,23 @@ public class CommanService2 implements CommanServiceDao2{
     public void postUpload(Post post, MultipartFile file) throws IOException
     {
 
-//            File thePath = new ClassPathResource("static/post_images").getFile();
-//            Path path = Paths.get(thePath.getAbsolutePath()+File.separator+file.getOriginalFilename());
-//            post.setImg_loc(file.getOriginalFilename());
-//            file.transferTo(path);
+            File thePath = new ClassPathResource("static/post_images").getFile();
+            Path path = Paths.get(thePath.getAbsolutePath()+File.separator+file.getOriginalFilename());
+            post.setImg_loc(file.getOriginalFilename());
+            file.transferTo(path);
 
 
-        String fileName = file.getOriginalFilename();
-        String imgPath = postImgPath + File.separator + fileName;
+//        String fileName = file.getOriginalFilename();
+//        String imgPath = postImgPath + File.separator + fileName;
 
-        File f = new File(postImgPath);
-        if(!f.exists())
-        {
-            f.mkdir();
-        }
-
-        Files.copy(file.getInputStream(),Paths.get(imgPath));
-        post.setImg_loc(fileName);
+//        File f = new File(postImgPath);
+//        if(!f.exists())
+//        {
+//            f.mkdir();
+//        }
+//
+//        Files.copy(file.getInputStream(),Paths.get(imgPath));
+//        post.setImg_loc(fileName);
 
     }
 // <============  Get a path to store Post Images End <===============
@@ -68,23 +68,23 @@ public class CommanService2 implements CommanServiceDao2{
     public void profileUpdate(ProfilePic profilePic, MultipartFile file) throws IOException
     {
 
-//            File thePath = new ClassPathResource("static/Profile_images").getFile();
-//            Path path = Paths.get(thePath.getAbsolutePath()+File.separator+file.getOriginalFilename());
-//            profilePic.setImg(file.getOriginalFilename());
-//            file.transferTo(path);
+            File thePath = new ClassPathResource("static/Profile_images").getFile();
+            Path path = Paths.get(thePath.getAbsolutePath()+File.separator+file.getOriginalFilename());
+            profilePic.setImg(file.getOriginalFilename());
+            file.transferTo(path);
 
-        String fileName = file.getOriginalFilename();
-        String imgPath = profileImgPath + File.separator + fileName;
-
-        File f = new File(profileImgPath);
-        if(!f.exists())
-        {
-            f.mkdir();
-        }
-
-
-        Files.copy(file.getInputStream(),Paths.get(imgPath));
-        profilePic.setImg(fileName);
+//        String fileName = file.getOriginalFilename();
+//        String imgPath = profileImgPath + File.separator + fileName;
+//
+//        File f = new File(profileImgPath);
+//        if(!f.exists())
+//        {
+//            f.mkdir();
+//        }
+//
+//
+//        Files.copy(file.getInputStream(),Paths.get(imgPath));
+//        profilePic.setImg(fileName);
     }
 
 // <===========  Get a path to Store Profile Images End  <===============
