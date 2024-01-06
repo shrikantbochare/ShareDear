@@ -82,6 +82,7 @@ public class CommanService2 implements CommanServiceDao2{
             f.mkdir();
         }
 
+
         Files.copy(file.getInputStream(),Paths.get(imgPath));
         profilePic.setImg(fileName);
     }
