@@ -4,12 +4,14 @@ import com.ShareDear.project.entities.Post;
 import com.ShareDear.project.entities.ProfilePic;
 import com.ShareDear.project.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -21,6 +23,11 @@ public class CommanService2 implements CommanServiceDao2{
 
     private CommanServiceDao commanServiceDao;
 
+    @Value("${path.profile.image}")
+    private String profileImgPath;
+
+    @Value("${path.post.image}")
+    private String postImgPath;
 
     @Autowired
     public CommanService2(CommanServiceDao commanServiceDao) {
@@ -32,10 +39,23 @@ public class CommanService2 implements CommanServiceDao2{
     public void postUpload(Post post, MultipartFile file) throws IOException
     {
 
-            File thePath = new ClassPathResource("static/post_images").getFile();
-            Path path = Paths.get(thePath.getAbsolutePath()+File.separator+file.getOriginalFilename());
-            post.setImg_loc(file.getOriginalFilename());
-            file.transferTo(path);
+//            File thePath = new ClassPathResource("static/post_images").getFile();
+//            Path path = Paths.get(thePath.getAbsolutePath()+File.separator+file.getOriginalFilename());
+//            post.setImg_loc(file.getOriginalFilename());
+//            file.transferTo(path);
+
+
+        String fileName = file.getOriginalFilename();
+        String imgPath = postImgPath + File.separator + fileName;
+
+        File f = new File(postImgPath);
+        if(!f.exists())
+        {
+            f.mkdir();
+        }
+
+        Files.copy(file.getInputStream(),Paths.get(imgPath));
+        post.setImg_loc(fileName);
 
     }
 // <============  Get a path to store Post Images End <===============
@@ -48,10 +68,22 @@ public class CommanService2 implements CommanServiceDao2{
     public void profileUpdate(ProfilePic profilePic, MultipartFile file) throws IOException
     {
 
-            File thePath = new ClassPathResource("static/Profile_images").getFile();
-            Path path = Paths.get(thePath.getAbsolutePath()+File.separator+file.getOriginalFilename());
-            profilePic.setImg(file.getOriginalFilename());
-            file.transferTo(path);
+//            File thePath = new ClassPathResource("static/Profile_images").getFile();
+//            Path path = Paths.get(thePath.getAbsolutePath()+File.separator+file.getOriginalFilename());
+//            profilePic.setImg(file.getOriginalFilename());
+//            file.transferTo(path);
+
+        String fileName = file.getOriginalFilename();
+        String imgPath = profileImgPath + File.separator + fileName;
+
+        File f = new File(profileImgPath);
+        if(!f.exists())
+        {
+            f.mkdir();
+        }
+
+        Files.copy(file.getInputStream(),Paths.get(imgPath));
+        profilePic.setImg(fileName);
     }
 
 // <===========  Get a path to Store Profile Images End  <===============
