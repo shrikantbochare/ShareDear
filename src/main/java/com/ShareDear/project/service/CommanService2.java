@@ -23,11 +23,11 @@ public class CommanService2 implements CommanServiceDao2{
 
     private CommanServiceDao commanServiceDao;
 
-    @Value("${path.profile.image}")
-    private String profileImgPath;
-
-    @Value("${path.post.image}")
-    private String postImgPath;
+//    @Value("${path.profile.image}")
+//    private String profileImgPath;
+//
+//    @Value("${path.post.image}")
+//    private String postImgPath;
 
     @Autowired
     public CommanService2(CommanServiceDao commanServiceDao) {

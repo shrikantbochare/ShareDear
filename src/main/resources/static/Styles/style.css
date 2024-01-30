@@ -1,7 +1,6 @@
 body
 {
-    background-image: url("../Profile_images/main_bg.jpg");
-    
+  background-color : #f8edeb
 }
 .gradient-custom {
     /* fallback for old browsers */
@@ -106,7 +105,7 @@ body
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
-    background-image: url(../Profile_images/main_bg.jpg);
+    background-color : #f8edeb;
     z-index: 1000;
 }
 
