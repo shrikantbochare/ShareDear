@@ -47,6 +47,9 @@ ShareDear is a social media application developed using Spring Boot, Spring MVC,
 11. **Data Persistence:**
     - Uses JPA for database interaction, storing user information, posts, and friend relationships.
 
+ 12. **Email Verification:**
+     - Email verification through OTP for new account registraion and forgot password.     
+
 ## Technologies Used
 
 - Java
