@@ -1,10 +1,7 @@
 package com.ShareDear.project.service;
 
 import com.ShareDear.project.dao.*;
-import com.ShareDear.project.entities.Post;
-import com.ShareDear.project.entities.ProfilePic;
-import com.ShareDear.project.entities.Request;
-import com.ShareDear.project.entities.User;
+import com.ShareDear.project.entities.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,27 +14,31 @@ import java.util.Optional;
 @Service
 public class ServiceDaoImpl implements ServiceDao{
 
-//    private Userdao userdao;
 
     private UserRepository userRepository;
-//    private PostDao postDao;
     private PostRepository postRepository;
-
     private RequestDao requestDao;
     private RequestRepository requestRepository;
-
-//    private ProfilePicDao profilePicDao;
+    private NewAccountRepository newAccountRepository;
     private ProfilePicRepository profilePicRepository;
 
+
     @Autowired
-    public ServiceDaoImpl(RequestDao requestDao,UserRepository userRepository,PostRepository postRepository,RequestRepository requestRepository,ProfilePicRepository profilePicRepository) {
+    public ServiceDaoImpl(RequestDao requestDao,UserRepository userRepository,PostRepository postRepository,
+                          RequestRepository requestRepository,ProfilePicRepository profilePicRepository
+                            ,NewAccountRepository newAccountRepository) {
 
         this.requestDao = requestDao;
         this.userRepository = userRepository;
         this.postRepository=postRepository;
         this.requestRepository=requestRepository;
         this.profilePicRepository=profilePicRepository;
+        this.newAccountRepository = newAccountRepository;
     }
+
+
+
+
 
 //   =========> save user  ==========>
     @Transactional
@@ -46,6 +47,7 @@ public class ServiceDaoImpl implements ServiceDao{
         userRepository.save(user);
     }
 //  <==========  save user End  <==========
+
 
 
 
@@ -71,6 +73,8 @@ public class ServiceDaoImpl implements ServiceDao{
 
 
 
+
+
 // =========> Update user details ==========>
     @Transactional
     @Override
@@ -78,6 +82,8 @@ public class ServiceDaoImpl implements ServiceDao{
         userRepository.save(u);
     }
 // =========> Update user details End ==========>
+
+
 
 
 
@@ -93,6 +99,38 @@ public class ServiceDaoImpl implements ServiceDao{
 
 
 
+
+//   =========> Check if user already exists  ==========>
+    @Override
+    public Boolean getUserByEmail(String email) {
+        Optional<User> optional = userRepository.findByEmail(email);
+
+        if(optional.isPresent())
+        {
+            return  true;
+        }
+        return false;
+    }
+//  <==========  Check if user already exists end  <==========
+
+
+
+
+
+
+// ==============> Check if user already exists  ==========>
+    @Override
+    public Optional<User> findUserByEmail(String email) {
+        Optional<User> optional = userRepository.findByEmail(email);
+        return optional;
+    }
+//  <==========  Check if user already exists end  <==========
+
+
+
+
+
+
 // =========> get posts of user by  user id ==========>
     @Override
     public Page<Post> postsOfUserById(User user, Pageable pageable) {
@@ -103,12 +141,16 @@ public class ServiceDaoImpl implements ServiceDao{
 
 
 
+
+
 // =========> Get ALl Posts Of Friends Start ==========>
     @Override
     public Page<Post> postsOfFriends(List<User> users, Pageable pageable) {
         return postRepository.findPostsByUsersOrderByPost_dateDesc(users,pageable);
     }
 // <========= Get ALl Posts Of Friends End <==========
+
+
 
 
 
@@ -126,6 +168,7 @@ public class ServiceDaoImpl implements ServiceDao{
 
 
 
+
 //  ========> get all users who send friend request to particular user ==========>
 
     @Override
@@ -138,6 +181,7 @@ public class ServiceDaoImpl implements ServiceDao{
 
 
 
+
 // ========> Cancel Request == delete request from db =========>
     @Transactional
     @Override
@@ -145,6 +189,7 @@ public class ServiceDaoImpl implements ServiceDao{
         requestDao.cancleRequest(me,from);
     }
 // <======== Cancel Request == delete request from db End <=========
+
 
 
 
@@ -185,6 +230,8 @@ public class ServiceDaoImpl implements ServiceDao{
 
 
 
+
+
 // ============> Find User By Name Or Username start =============>
 
     @Override
@@ -195,5 +242,36 @@ public class ServiceDaoImpl implements ServiceDao{
 
 // <============ Find User By Name Or Username End <=============
 
+
+
+
+
+
+
+// <============ NewAccount Related Methods <=============
+
+    @Override
+    public void saveNewAccount(NewAccount newAccount)
+    {
+        newAccountRepository.save(newAccount);
+    }
+
+
+    @Override
+    public NewAccount findNewAccount(String email)
+    {
+        return newAccountRepository.findByEmail(email);
+    }
+
+
+
+    @Transactional
+    @Override
+    public void deleteNewAccount(String email)
+    {
+        newAccountRepository.deleteByEmail(email);
+    }
+
+// ============> NewAccount Related Methods =============>
 
 }

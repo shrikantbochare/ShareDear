@@ -33,14 +33,14 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
     {
         http.authorizeHttpRequests(configurer ->
-                        configurer.requestMatchers("/login","/registerUser","/register","/post_images/**","/Profile_images/**","/Styles/**")
+                        configurer.requestMatchers("/login","/forgotPassword","/verifyEmailForPass","/verifyOtpForPassChange","/submitNewPass","/registerUser","/register","/registerEmail","/verifyEmail","/verify","/post_images/**","/Profile_images/**","/Styles/**")
                                 .permitAll().anyRequest().authenticated()
                 )
                 .formLogin(form ->
                         form
                                 .loginPage("/login")
                                 .permitAll()
-                                .defaultSuccessUrl("/home?page=0",true)
+                                .defaultSuccessUrl("/home/posts?page=0",true)
                                 .failureUrl("/login?error=true")
                 )
                 .logout(logout ->

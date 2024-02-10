@@ -65,12 +65,12 @@ public class Request {
         this.to_user_id = to_user_id;
     }
 
-    @Override
-    public String toString() {
-        return "Request{" +
-                "req_id=" + req_id +
-                ", status='" + status + '\'' +
-                ", from_user_id=" + from_user_id +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Request{" +
+//                "req_id=" + req_id +
+//                ", status='" + status + '\'' +
+//                ", from_user_id=" + from_user_id +
+//                '}';
+//    }
 }

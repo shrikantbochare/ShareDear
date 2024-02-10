@@ -21,20 +21,21 @@ import java.util.Set;
 public class CommanService implements CommanServiceDao{
 
     private ServiceDao serviceDao;
-//    private RequestDao requestDao;
-//    private Userdao userdao;
-//    private PostDao postDao;
     private UserRepository userRepository;
     private RequestRepository requestRepository;
     private PostRepository postRepository;
 
+
     @Autowired
-    public CommanService(ServiceDao serviceDao, RequestRepository requestRepository, UserRepository userRepository,PostRepository postRepository) {
+    public CommanService(ServiceDao serviceDao, RequestRepository requestRepository, UserRepository userRepository,
+                         PostRepository postRepository) {
         this.serviceDao = serviceDao;
         this.requestRepository = requestRepository;
         this.userRepository = userRepository;
         this.postRepository = postRepository;
     }
+
+
 
 
 
@@ -50,6 +51,8 @@ public class CommanService implements CommanServiceDao{
         return date;
     }
 // <=========> Get Todays Date End <===========
+
+
 
 
 
@@ -72,6 +75,8 @@ public class CommanService implements CommanServiceDao{
 
 
 
+
+
 // ==========> Get All My Friends Start ============>
     @Override
     public List<User> allFriendsOfMine(User u) {
@@ -82,6 +87,8 @@ public class CommanService implements CommanServiceDao{
 
     }
 // <========== Get All My Friends End <============
+
+
 
 
 
@@ -123,6 +130,8 @@ public class CommanService implements CommanServiceDao{
 
 
 
+
+
 // ==========> Get Users to whom I sent request Start ==========>
     @Override
     public List<Integer> requestSentByMe(int id) {
@@ -142,6 +151,8 @@ public class CommanService implements CommanServiceDao{
         return null;
     }
 // ==========> Get Users to whom I sent request End ==========>
+
+
 
 
 
@@ -167,5 +178,8 @@ public class CommanService implements CommanServiceDao{
         return null;
     }
 // ==========> Get Users Whom Sent request to me End ==========>
+
+
+
 
 }

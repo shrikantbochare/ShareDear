@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<div th:replace="~{ShareDear/fragments/CommonComp :: headerComp}"></div>
+
+
+<body>
+
+<section class="h-100">
+    <div class="container py-5 " >
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card postUpdate text-dark" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                            <div class="mb-md-5 mt-md-4 pb-5">
+                                <div th:if="${pageName == 'EmailVerification'}" >
+                                    <div th:replace="~{ShareDear/fragments/CommonComp :: EmailVerification}"></div>
+                                </div>
+                                <div th:if="${pageName == 'OtpVerification'}" >
+                                    <div th:replace="~{ShareDear/fragments/CommonComp :: OtpVerification}"></div>
+                                </div>
+                                <div  th:if="${pageName == 'NewPassCreation'}"  >
+                                    <div th:replace="~{ShareDear/fragments/CommonComp :: NewPassCreation}"></div>
+                                </div>
+                                <div th:if="${pageName == 'PassCreationSuccess'}" >
+                                    <div  th:replace="~{ShareDear/fragments/CommonComp :: PassCreationSuccess}"></div>
+                                </div>
+                            </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+</body>
+
+</html>

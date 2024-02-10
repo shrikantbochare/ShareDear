@@ -15,10 +15,10 @@
             </div>
             <div class="col-md-6 d-flex justify-content-center align-items-center">
                 <div th:if="${friend == 'yes'}">
-                   <a class="customLinKButton postButton" th:href="@{/userPosts(uid=${user.id},page=0)}">Posts</a>
+                   <a class="customLinKButton postButton" th:href="@{/post/userPosts(uid=${user.id},page=0)}">Posts</a>
                     <a class="customLinKButton friendButton"
-                        th:href="@{/userFriends(uid=${user.id},page=0)}">Friends</a>
-                    <a class="customLinKButton requestButton" th:href="@{/mutualFriends(uid=${user.id},page=0)}">Mutual</a>
+                        th:href="@{/users/userFriends(uid=${user.id},page=0)}">Friends</a>
+                    <a class="customLinKButton requestButton" th:href="@{/users/mutualFriends(uid=${user.id},page=0)}">Mutual</a>
                 </div>
             </div>
         </div>

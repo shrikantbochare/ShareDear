@@ -19,4 +19,8 @@ public interface CommanServiceDao2 {
     List<User> pageableUsers( List<User> friends ,int page);
 
     List<User> mutualFriends(User user, User currentUser);
+
+    void sendMail(String message, String to);
+
+    int randomOTP();
 }

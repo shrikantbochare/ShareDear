@@ -26,4 +26,6 @@ public interface CommanServiceDao {
 
     public List<User> allFriendsOfMine(User u);
 
+
+
 }

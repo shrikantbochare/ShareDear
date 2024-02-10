@@ -15,11 +15,11 @@
             </div>
             <div class="col-md-6 d-flex justify-content-center align-items-center">
                 <div>
-                    <a class="customLinKButton postButton" th:href="@{/myPosts(page=0)}">My
+                    <a class="customLinKButton postButton" th:href="@{/post/all(page=0)}">My
                             Posts</a>
-                    <a class="customLinKButton friendButton" th:href="@{/friends(page=0)}">My
+                    <a class="customLinKButton friendButton" th:href="@{/users/friends(page=0)}">My
                             Friends</a>
-                    <a class="customLinKButton requestButton" th:href="@{/requests(page=0)}">
+                    <a class="customLinKButton requestButton" th:href="@{/request/all(page=0)}">
                         Friend Requests</a>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="row">
 
                     <div class="col-md-4 p-2">
-                        <form th:action="@{/profilePictureUpdate}" th:object="${currentUser.profilePic}" method="post" enctype="multipart/form-data">
+                        <form th:action="@{/profile/profilePictureUpdate}" th:object="${currentUser.profilePic}" method="post" enctype="multipart/form-data">
 
                          <div class="d-none">
 
@@ -47,7 +47,7 @@
                                        name="profile_user_id" th:field="${currentUser.profilePic.user_id.id}">
                             </div>
                         <div class="d-flex mt-1">
-                            <a class="customLinKButton mt-2 mx-1 flex-fill cancelActionButton" th:href="@{/profilePictureRemove(pid=${currentUser.profilePic.id})}">
+                            <a class="customLinKButton mt-2 mx-1 flex-fill cancelActionButton" th:href="@{/profile/profilePictureRemove(pid=${currentUser.profilePic.id})}">
                                 Remove</a>
                             <button type="submit" class="myButton mt-2 mx-1 flex-fill">Update</button>
                         </div>
@@ -57,7 +57,7 @@
 
 
                     <div class="col-md-8">
-                        <form th:action="@{/profileUpdate}" th:object="${currentUser}" method="post" enctype="multipart/form-data">
+                        <form th:action="@{/profile/profileUpdate}" th:object="${updateUserPojo}" method="post" enctype="multipart/form-data">
                         <div class="info">
                             <div class="form-floating mb-3 mt-3 d-none" >
                                 <input style="display:none" type="text" class="form-control" id="user_id"
@@ -66,27 +66,30 @@
                             <div class="form-floating mb-3 mt-3">
                                 <input type="text" class="form-control" id="name" placeholder="Enter name"
                                     name="fname" th:field="*{name}">
-                                <label for="fname">Full Name :</label>
+                                <label for="name">Full Name :</label>
+                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
                             </div>
                             <div class="form-floating mb-3 mt-3">
                                 <input type="text" class="form-control" id="username" placeholder="Enter username"
-                                    name="username" th:field="*{username}">
+                                    name="username" th:field="*{username}" readonly>
                                 <label for="username">Username :</label>
                             </div>
                             <div class="form-floating mb-3 mt-3">
                                 <input type="email" class="form-control" id="email" placeholder="Enter email"
-                                    name="email" th:field="*{email}">
+                                    name="email" th:field="*{email}" readonly>
                                 <label for="email">Email :</label>
                             </div>
                             <div class="form-floating mb-3 mt-3">
                                 <input type="number" class="form-control" id="age" placeholder="Enter age"
                                     name="age" th:field="*{age}" required>
                                 <label for="age">Age :</label>
+                                <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
                             </div>
                             <div class="form-floating mb-3 mt-3">
                                 <input type="date" class="form-control" id="bdate" placeholder="Enter education"
                                        name="bdate" th:field="*{birthDate}" required>
                                 <label for="bdate">BirthDate :</label>
+                                <p th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></p>
                             </div>
                             <div class="form-floating mb-3 mt-3">
                                 <input type="text" class="form-control" id="education" placeholder="Enter education"
@@ -113,15 +116,10 @@
                                     name="state" th:field="*{state}">
                                 <label for="state">State :</label>
                             </div>
-<!--                            <div class="form-floating mb-3 mt-3">-->
-<!--                                <input type="password" class="form-control" id="password" placeholder="Enter password"-->
-<!--                                    name="password" >-->
-<!--                                <label for="password">password :</label>-->
-<!--                            </div>-->
-                            <div class="form-floating mb-3 mt-3 ">
-                                <input type="password" class="form-control" id="password" placeholder="Enter password"
-                                       name="Password" th:field="*{password}">
-                                <label for="password">password :</label>
+                            <div class="form-floating mb-3 mt-3 d-none">
+                                <input type="text" class="form-control" id="password" placeholder="Enter password"
+                                       name="Password" th:field="*{password}" readonly>
+<!--                                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>-->
                             </div>
                         </div>
                             <div class="d-flex justify-content-center align-items-center">
@@ -129,6 +127,8 @@
                             </div>
 
                         </form>
+
+                        <p class="text-center m-1"><a class="text-decoration-none text-primary" th:href="@{/profile/passwordUpdate}">Password Update</a></p>
                     </div>
                 </div>
 

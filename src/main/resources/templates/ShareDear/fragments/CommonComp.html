@@ -53,23 +53,23 @@
 
 <nav th:fragment="navbarComp" class="navbar navbar-expand-sm  navCust">
   <div class="container-fluid">
-    <a class="navbar-brand navLinkText" href="../Home.html">ShareDear</a>
+    <a class="navbar-brand navLinkText" th:href="@{/home/posts(page=0)}">ShareDear</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link navLinkText" th:href="@{/home(page=0)}">Home</a>
+          <a class="nav-link navLinkText" th:href="@{/home/posts(page=0)}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link navLinkText" th:href="@{/post}">Post</a>
+          <a class="nav-link navLinkText" th:href="@{/post/create}">Post</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link navLinkText" th:href="@{/allUsers(page=0)}">Users</a>
+          <a class="nav-link navLinkText" th:href="@{/users/all(page=0)}">Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link navLinkText" th:href="@{/profile}"><span
+          <a class="nav-link navLinkText" th:href="@{/profile/}"><span
                   sec:authentication="name">Bob</span></a>
         </li>
         <li class="nav-item">
@@ -80,13 +80,13 @@
           <input type="submit" value="Logout" class="d-none" id="logoutBtn">
         </form>
       </ul>
-      <form class="d-flex" th:action="@{/searchUser(page=0)}" method="post">
+      <form class="d-flex" th:action="@{/users/searchUser(page=0)}" method="post">
         <input class="form-control me-2" type="text" placeholder="Search user" name="searchUser">
         <button class="btn btn-primary" type="submit">Search</button>
       </form>
     </div>
+  </div>
 </nav>
-
 
 <!--Navbar Component end-->
 
@@ -142,166 +142,6 @@
 
 
 
-<!--&lt;!&ndash;Home Pagination Component Start&ndash;&gt;-->
-
-<!--<div th:fragment="paginationComp0" class="my-1  page">-->
-<!--  <ul class="pagination justify-content-center">-->
-
-<!--    <li th:if="${pageNo != 0}" class="page-item"><a th:href="@{/home(page=${pageNo-1})}" class="page-link" href="#">Previous</a></li>-->
-
-<!--    <li th:classappend="${pageNo == i-1? 'active' : ''}"  th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{/home(page=${i-1})}" class="page-link" href="#"><span th:text="${i}"></span></a></li>-->
-
-
-<!--    <li  th:if="${totalPages != pageNo+1}" class="page-item"><a th:href="@{/home(page=${pageNo+1})}" class="page-link" href="#">Next</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
-<!--&lt;!&ndash; Home Pagination Component End&ndash;&gt;-->
-
-
-
-
-
-
-<!--&lt;!&ndash;AllUsers Pagination Component Start&ndash;&gt;-->
-
-<!--<div th:fragment="paginationComp3" class="my-1  page">-->
-<!--  <ul class="pagination justify-content-center">-->
-
-<!--    <li th:if="${pageNo != 0}" class="page-item"><a th:href="@{/allUsers(page=${pageNo-1})}" class="page-link" href="#">Previous</a></li>-->
-
-<!--    <li th:classappend="${pageNo == i-1? 'active' : ''}"  th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{/allUsers(page=${i-1})}" class="page-link" href="#"><span th:text="${i}"></span></a></li>-->
-
-
-<!--    <li  th:if="${totalPages != pageNo+1}" class="page-item"><a th:href="@{/allUsers(page=${pageNo+1})}" class="page-link" href="#">Next</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
-<!--&lt;!&ndash; AllUsers Pagination Component End&ndash;&gt;-->
-
-
-
-
-
-
-<!--&lt;!&ndash;MyPosts Pagination Component Start&ndash;&gt;-->
-
-<!--<div th:fragment="paginationComp4" class="my-1  page">-->
-<!--  <ul class="pagination justify-content-center">-->
-
-<!--    <li th:if="${pageNo != 0}" class="page-item"><a th:href="@{/myPosts(page=${pageNo-1})}" class="page-link" href="#">Previous</a></li>-->
-
-<!--    <li th:classappend="${pageNo == i-1? 'active' : ''}"  th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{/myPosts(page=${i-1})}" class="page-link" href="#"><span th:text="${i}"></span></a></li>-->
-
-
-<!--    <li  th:if="${totalPages != pageNo+1}" class="page-item"><a th:href="@{/myPosts(page=${pageNo+1})}" class="page-link" href="#">Next</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
-<!--&lt;!&ndash; MyPosts Pagination Component End&ndash;&gt;-->
-
-
-
-
-
-
-
-<!--&lt;!&ndash;requests Pagination Component Start&ndash;&gt;-->
-
-<!--<div th:fragment="paginationComp5" class="my-1  page">-->
-<!--  <ul class="pagination justify-content-center">-->
-
-<!--    <li th:if="${pageNo != 0}" class="page-item"><a th:href="@{/requests(page=${pageNo-1})}" class="page-link" href="#">Previous</a></li>-->
-
-<!--    <li th:classappend="${pageNo == i-1? 'active' : ''}"  th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{/requests(page=${i-1})}" class="page-link" href="#"><span th:text="${i}"></span></a></li>-->
-
-
-<!--    <li  th:if="${totalPages != pageNo+1}" class="page-item"><a th:href="@{/requests(page=${pageNo+1})}" class="page-link" href="#">Next</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
-<!--&lt;!&ndash; requests Pagination Component End&ndash;&gt;-->
-
-
-
-
-
-
-<!--&lt;!&ndash;friends Pagination Component Start&ndash;&gt;-->
-
-<!--<div th:fragment="paginationComp6" class="my-1  page">-->
-<!--  <ul class="pagination justify-content-center">-->
-
-<!--    <li th:if="${pageNo != 0}" class="page-item"><a th:href="@{/friends(page=${pageNo-1})}" class="page-link" href="#">Previous</a></li>-->
-
-<!--    <li th:classappend="${pageNo == i-1? 'active' : ''}"  th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{/friends(page=${i-1})}" class="page-link" href="#"><span th:text="${i}"></span></a></li>-->
-
-
-<!--    <li  th:if="${totalPages != pageNo+1}" class="page-item"><a th:href="@{/friends(page=${pageNo+1})}" class="page-link" href="#">Next</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
-<!--&lt;!&ndash; friends Pagination Component End&ndash;&gt;-->
-
-
-
-
-
-<!--&lt;!&ndash;UserPosts Pagination Component Start&ndash;&gt;-->
-
-<!--<div th:fragment="paginationComp2" class="my-1  page">-->
-<!--  <ul class="pagination justify-content-center">-->
-
-<!--    <li th:if="${pageNo != 0}" class="page-item"><a th:href="@{/userPosts(uid=${userId},page=${pageNo-1})}" class="page-link" href="#">Previous</a></li>-->
-
-<!--    <li th:classappend="${pageNo == i-1? 'active' : ''}"  th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{/userPosts(uid=${userId},page=${i-1})}" class="page-link" href="#"><span th:text="${i}"></span></a></li>-->
-
-
-<!--    <li  th:if="${totalPages != pageNo+1}" class="page-item"><a th:href="@{/userPosts(uid=${userId},page=${pageNo+1})}" class="page-link" href="#">Next</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
-<!--&lt;!&ndash; UserPosts Pagination Component End&ndash;&gt;-->
-
-
-
-
-
-<!--&lt;!&ndash;UserFriends Pagination Component Start&ndash;&gt;-->
-
-<!--<div th:fragment="paginationComp7" class="my-1  page">-->
-<!--  <ul class="pagination justify-content-center">-->
-
-<!--    <li th:if="${pageNo != 0}" class="page-item"><a th:href="@{/userFriends(uid=${userId},page=${pageNo-1})}" class="page-link" href="#">Previous</a></li>-->
-
-<!--    <li th:classappend="${pageNo == i-1? 'active' : ''}"  th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{/userFriends(uid=${userId},page=${i-1})}" class="page-link" href="#"><span th:text="${i}"></span></a></li>-->
-
-
-<!--    <li  th:if="${totalPages != pageNo+1}" class="page-item"><a th:href="@{/userFriends(uid=${userId},page=${pageNo+1})}" class="page-link" href="#">Next</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
-<!--&lt;!&ndash; UserFriends Pagination Component End&ndash;&gt;-->
-
-
-
-
-
-
-<!--&lt;!&ndash;MutualFriends Pagination Component Start&ndash;&gt;-->
-
-<!--<div th:fragment="paginationComp8" class="my-1  page">-->
-<!--  <ul class="pagination justify-content-center">-->
-
-<!--    <li th:if="${pageNo != 0}" class="page-item"><a th:href="@{/mutualFriends(uid=${userId},page=${pageNo-1})}" class="page-link" href="#">Previous</a></li>-->
-
-<!--    <li th:classappend="${pageNo == i-1? 'active' : ''}"  th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{/mutualFriends(uid=${userId},page=${i-1})}" class="page-link" href="#"><span th:text="${i}"></span></a></li>-->
-
-
-<!--    <li  th:if="${totalPages != pageNo+1}" class="page-item"><a th:href="@{/mutualFriends(uid=${userId},page=${pageNo+1})}" class="page-link" href="#">Next</a></li>-->
-<!--  </ul>-->
-<!--</div>-->
-<!--&lt;!&ndash; MutualFriends Pagination Component End&ndash;&gt;-->
-
-
-
-
-
-
-
 
 <!--Post Component Start-->
 
@@ -311,7 +151,7 @@
 <div th:fragment="postComp">
   <div th:replace="~{ShareDear/fragments/CommonComp :: navbarComp}"></div>
 
-  <div th:if="${noData == 'yes'}">
+  <div th:if="${noData == 'yes'}" class="container-fluid">
     <h3 class="m-3 text-center text-dark">No Posts Available</h3>
   </div>
 
@@ -389,7 +229,7 @@
 <!--User's Profile Pic Component Start-->
 
 <div class="col-sm-4 d-flex justify-content-center align-items-center" th:fragment="profilePicComp">
-  <a th:href="@{/userDetails(uid = ${user.id})}"><img th:src="@{'/Profile_images/'+${user.profilePic.img}}" alt=""
+  <a th:href="@{/users/userDetails(uid = ${user.id})}"><img th:src="@{'/Profile_images/'+${user.profilePic.img}}" alt=""
                                                       class="img-thumbnail" width="100"></a>
 </div>
 
@@ -397,6 +237,110 @@
 
 
 
+
+
+
+<!--Email Verification for new user and Forgot Password Component start-->
+
+<div th:fragment="EmailVerification">
+  <form th:action="@{'/'+${url}}"  method="post">
+    <div th:if="${mailNotSent}">
+      <i class="text-warning">
+        Mail not sent, Please try again after some time.
+      </i>
+    </div>
+    <h2 class="fw-bold mb-2 text-uppercase text-dark">Verify email address</h2>
+    <p class="text-dark mb-5">Please enter your Details</p>
+
+    <div class="form-outline form-white mb-4">
+      <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" required/>
+      <label class="form-label text-dark" for="typeEmailX">Email</label>
+    </div>
+    <button class="btn btn-outline-light btn-lg px-5" type="submit">Send OTP</button>
+  </form>
+
+  <div th:if="${userExists}">
+    <i class="text-warning">
+      Email already Registered
+    </i>
+    <p class="small mb-2 pb-lg-2"><a class="text-danger text-dark" th:href="@{/login}">Login</a>
+    </p>
+  </div>
+  <div th:if="${userNotExists}">
+    <i class="text-warning">
+      Email is not Registered with us Please check your email and try again.
+    </i>
+  </div>
+</div>
+
+
+
+
+
+<div th:fragment="OtpVerification">
+  <h2 class="fw-bold mb-2 text-uppercase text-dark">Email Verification</h2>
+  <p class="text-dark mb-5">Please enter OTP sent to your Email Address</p>
+
+  <div th:if="${invalid}">
+    <i class="text-warning">
+      Invalid OTP
+    </i>
+  </div>
+
+  <form th:action="@{'/'+${url}}" method="post">
+
+    <div class="form-outline form-white mb-2">
+      <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" th:value="${mail}" readonly/>
+      <label class="form-label text-dark" for="typeEmailX">Email</label>
+    </div>
+    <div class="form-outline form-white mb-2">
+      <input type="text" id="typeOtpX" class="form-control form-control-lg" name="otp" required/>
+      <label class="form-label text-dark" for="typeOtpX">OTP</label>
+    </div>
+
+    <button class="btn btn-outline-light btn-lg px-5 text-dark" type="submit">Submit</button>
+
+  </form>
+
+
+  <p class="small mb-2 pb-lg-2"><a class="text-dark" th:href="@{/login}">Login</a>
+  </p>
+  <p class="small mb-2 pb-lg-2"><a class="text-dark" th:href="@{/register}">Register</a>
+  </p>
+</div>
+
+
+
+
+
+<div th:fragment="NewPassCreation">
+  <h2 class="fw-bold mb-2 text-uppercase text-dark">Enter New Password</h2>
+  <p class="text-dark mb-5">Password will be changed for <span th:text="${mail}"></span></p>
+  <form th:action="@{/submitNewPass}"  method="post">
+    <div class="form-outline form-white mb-4 d-none">
+      <input style="display:none;" type="email" id="typeEmailX" class="form-control form-control-lg" name="email" th:value="${mail}" readonly/>
+    </div>
+    <div class="form-outline form-white mb-4">
+      <input type="password" id="typePassX" class="form-control form-control-lg" name="pass" required/>
+      <label class="form-label text-dark" for="typePassX">New Password</label>
+    </div>
+    <button class="btn btn-outline-light btn-lg px-5" type="submit">Change Password</button>
+  </form>
+</div>
+
+
+
+<div th:fragment="PassCreationSuccess">
+  <h2 class="fw-bold mb-2 text-uppercase text-dark">Password Updated</h2>
+  <p class="text-primary mb-5">Password changed successfully for <span th:text="${mail}"></span></p>
+
+  <h3 class="mb-2 pb-lg-2"><a class="text-success " th:href="@{/login}">Login</a>
+  </h3>
+</div>
+
+
+
+<!--Email Verification for new user and Forgot Password Component End-->
 
 </body>
 

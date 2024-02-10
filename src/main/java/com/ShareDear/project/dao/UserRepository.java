@@ -7,11 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface UserRepository extends JpaRepository<User,Integer> {
 
     public User findByUsername(String username);
+
+    public Optional<User> findByEmail(String email);
     public Page<User> findByUsernameContainingOrNameContaining(String name1,String name, Pageable pageable);
 
     public  Page<User> findByIdNotIn(Set<Integer> resultSet,Pageable pageable);

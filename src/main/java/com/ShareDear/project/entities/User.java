@@ -266,13 +266,13 @@ public class User {
         iAmFriend.add(u);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
 //                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+//                ", username='" + username + '\'' +
+//                ", password='" + password + '\'' +
 //                ", email='" + email + '\'' +
 //                ", age=" + age +
 //                ", birthDate=" + birthDate +
@@ -281,6 +281,6 @@ public class User {
 //                ", address='" + address + '\'' +
 //                ", city='" + city + '\'' +
 //                ", state='" + state + '\'' +
-                '}';
-    }
+//                '}';
+//    }
 }

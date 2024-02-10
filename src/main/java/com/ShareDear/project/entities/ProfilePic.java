@@ -52,12 +52,12 @@ public class ProfilePic {
         this.user_id = user_id;
     }
 
-    @Override
-    public String toString() {
-        return "ProfilePic{" +
-                "id=" + id +
-                ", img='" + img + '\'' +
-                ", user_id=" + user_id +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "ProfilePic{" +
+//                "id=" + id +
+//                ", img='" + img + '\'' +
+//                ", user_id=" + user_id +
+//                '}';
+//    }
 }

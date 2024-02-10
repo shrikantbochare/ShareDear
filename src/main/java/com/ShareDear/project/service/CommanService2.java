@@ -4,37 +4,37 @@ import com.ShareDear.project.entities.Post;
 import com.ShareDear.project.entities.ProfilePic;
 import com.ShareDear.project.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 
 @Service
 public class CommanService2 implements CommanServiceDao2{
 
 
     private CommanServiceDao commanServiceDao;
-
-//    @Value("${path.profile.image}")
-//    private String profileImgPath;
-//
-//    @Value("${path.post.image}")
-//    private String postImgPath;
-
     @Autowired
     public CommanService2(CommanServiceDao commanServiceDao) {
         this.commanServiceDao = commanServiceDao;
     }
 
-    // ===========> Get a path to store Post Images ============>
+
+
+
+
+// ===========> Get a path to store Post Images ============>
     @Override
     public void postUpload(Post post, MultipartFile file) throws IOException
     {
@@ -44,21 +44,11 @@ public class CommanService2 implements CommanServiceDao2{
             post.setImg_loc(file.getOriginalFilename());
             file.transferTo(path);
 
-
-//        String fileName = file.getOriginalFilename();
-//        String imgPath = postImgPath + File.separator + fileName;
-
-//        File f = new File(postImgPath);
-//        if(!f.exists())
-//        {
-//            f.mkdir();
-//        }
-//
-//        Files.copy(file.getInputStream(),Paths.get(imgPath));
-//        post.setImg_loc(fileName);
-
     }
 // <============  Get a path to store Post Images End <===============
+
+
+
 
 
 
@@ -72,22 +62,11 @@ public class CommanService2 implements CommanServiceDao2{
             Path path = Paths.get(thePath.getAbsolutePath()+File.separator+file.getOriginalFilename());
             profilePic.setImg(file.getOriginalFilename());
             file.transferTo(path);
-
-//        String fileName = file.getOriginalFilename();
-//        String imgPath = profileImgPath + File.separator + fileName;
-//
-//        File f = new File(profileImgPath);
-//        if(!f.exists())
-//        {
-//            f.mkdir();
-//        }
-//
-//
-//        Files.copy(file.getInputStream(),Paths.get(imgPath));
-//        profilePic.setImg(fileName);
     }
 
 // <===========  Get a path to Store Profile Images End  <===============
+
+
 
 
 
@@ -101,6 +80,8 @@ public class CommanService2 implements CommanServiceDao2{
         return (currentUser.getMyFriends().contains(user)) || (currentUser.getiAmFriend().contains(user));
     }
 // <============ Check if User is Your friend End  <==============
+
+
 
 
 
@@ -133,6 +114,8 @@ public class CommanService2 implements CommanServiceDao2{
 
 
 
+
+
 // ==============> Get List Of Mutual Friends Start  ==============>
 
     @Override
@@ -158,5 +141,84 @@ public class CommanService2 implements CommanServiceDao2{
 
 
 // <============== Get List Of Mutual Friends End  <================
+
+
+
+
+
+
+
+// ==============> Send Email verification mail  ================>
+
+    @Override
+    public void sendMail(String otp, String email)
+    {
+        String message = otp;
+        String subject = "Account Verification Mail";
+        String from = "theinquisitivecoder@gmail.com";
+        String to = email;
+
+
+        //variable for gmail host
+        String host = "smtp.gmail.com";
+
+        //getting system properties
+        Properties properties = System.getProperties();
+
+        //setting some properties
+        properties.put("mail.smtp.host",host);
+        properties.put("mail.smtp.port","465");
+        properties.put("mail.smtp.ssl.enable","true");
+        properties.put("mail.smtp.auth","true");
+
+
+        //Getting the session object
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("theinquisitivecoder@gmail.com","jogj lwrp gqqp fpux");
+            }
+        });
+
+
+
+        //Message Compose
+        MimeMessage mimeMessage = new MimeMessage(session);
+
+        try {
+            mimeMessage.setFrom(from);
+            mimeMessage.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+            mimeMessage.setSubject(subject);
+            mimeMessage.setText(message);
+
+
+            //Send mail using Transport class
+            Transport.send(mimeMessage);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+// <============== Send Email verification mail End  <================
+
+
+
+
+
+
+
+// ==============> Generating Random OTP  ================>
+
+
+    @Override
+    public int randomOTP() {
+        Random random = new Random();
+        int min = 1000;
+        int max = 10000;
+
+        int otp =  random.nextInt(9000 ) + 1000 ;
+        return otp;
+    }
+// <============== Generating Random OTP  <===============
 
 }

@@ -1,13 +1,11 @@
 package com.ShareDear.project.service;
 
-import com.ShareDear.project.entities.Post;
-import com.ShareDear.project.entities.ProfilePic;
-import com.ShareDear.project.entities.Request;
-import com.ShareDear.project.entities.User;
+import com.ShareDear.project.entities.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ServiceDao {
 
@@ -20,6 +18,11 @@ public interface ServiceDao {
     void UpdateUser(User u);
 
     User getUserByUsername(String username);
+
+    Boolean getUserByEmail(String email);
+
+
+    Optional<User> findUserByEmail(String email);
 
     Page<User> findUserByUsernameOrName(String name,Pageable pageable);
 
@@ -65,4 +68,18 @@ public interface ServiceDao {
     ProfilePic findProfileByItsId(int id);
 
 // <==========   methods related to Profile Pic End <==============
+
+
+
+
+
+// <============ NewAccount Related Methods <=============
+
+    void saveNewAccount(NewAccount newAccount);
+    NewAccount findNewAccount(String email);
+    void deleteNewAccount(String email);
+
+// ============> NewAccount Related Methods =============>
+
+
 }

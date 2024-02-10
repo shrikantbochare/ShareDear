@@ -84,10 +84,10 @@ public class Post {
         this.user_id = user_id;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "post_id=" + post_id +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Post{" +
+//                "post_id=" + post_id +
+//                '}';
+//    }
 }
