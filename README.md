@@ -62,9 +62,8 @@ ShareDear is a social media application developed using Spring Boot, Spring MVC,
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/yourusername/ShareDear.git`
+1. Clone the repository: `git clone https://github.com/shrikantbochare/ShareDear.git`
 2. Configure the MySQL database settings in `application.properties`.
-3. Access the application at `https://sharedear-production.up.railway.app/`
 
 ## Dependencies
 
@@ -74,6 +73,8 @@ ShareDear is a social media application developed using Spring Boot, Spring MVC,
 - Spring Validation
 - Spring Data JPA
 - MySQL Connector
+- Mail API
+- Spring AOP
 
 ## Contributing
 
