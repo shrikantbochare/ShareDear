@@ -195,10 +195,19 @@ public class CommanService2 implements CommanServiceDao2{
     @Override
     public void sendMail(String otp, String email)
     {
-        String message = otp;
         String subject = "Account Verification Mail";
         String from = "theinquisitivecoder@gmail.com";
         String to = email;
+        String message = "<div>" +
+                "<h2>ShareDear Security" +
+                "<br> <br> "+
+                "<h4>Your One Time Password is :" + otp +" </h4>" +
+                "<br> <br> <br>" +
+                "<p> This email is in response to a request to verify email address. <br> You can ignore this email if you did not submit this request.<br>" +
+                "Use this passcode to verify email address.<br>" +
+                "Passcode expires in 60 minutes.<br>" +
+                "Do not reply to this email.</p>" +
+                "<div>";
 
 
         //variable for gmail host
@@ -231,7 +240,8 @@ public class CommanService2 implements CommanServiceDao2{
             mimeMessage.setFrom(from);
             mimeMessage.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
             mimeMessage.setSubject(subject);
-            mimeMessage.setText(message);
+//            mimeMessage.setText(message);
+            mimeMessage.setContent(message,"text/html");
 
 
             //Send mail using Transport class
