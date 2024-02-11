@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class CommanService implements CommanServiceDao{
@@ -179,6 +181,20 @@ public class CommanService implements CommanServiceDao{
     }
 // ==========> Get Users Whom Sent request to me End ==========>
 
+
+
+
+
+// ============> Check password validity ================>
+    @Override
+    public Boolean checkPassValidity(String pass)
+    {
+        Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@_/*$])[A-Za-z\\d@_/*$]{8,}$");
+        Matcher matcher = pattern.matcher(pass);
+
+        return matcher.matches();
+    }
+// <============= Check Password Validity <=============
 
 
 

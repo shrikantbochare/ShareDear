@@ -71,6 +71,48 @@ public class CommanService2 implements CommanServiceDao2{
 
 
 
+// ===============> Delete picture from path ==================>
+    @Override
+    public void deleteProfilePicFromPath(String fileName) throws IOException
+    {
+        File thePath = new ClassPathResource("static/Profile_images").getFile();
+        Path path = Paths.get(thePath.getAbsolutePath()+File.separator+fileName);
+
+        File file = new File(path.toString());
+
+        if(file.exists())
+        {
+            boolean result = file.delete();
+        }
+    }
+// <=============== Delete picture from path <=================
+
+
+
+
+
+
+// ===============> Delete picture from path ==================>
+    @Override
+    public void deletePostPicFromPath(String fileName) throws IOException
+    {
+        File thePath = new ClassPathResource("static/post_images").getFile();
+        Path path = Paths.get(thePath.getAbsolutePath()+File.separator+fileName);
+
+        File file = new File(path.toString());
+
+        if(file.exists())
+        {
+            boolean result = file.delete();
+        }
+    }
+// <=============== Delete picture from path <=================
+
+
+
+
+
+
 
 // =============> Check if User is Your friend Start ============>
     @Override

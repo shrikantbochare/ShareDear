@@ -23,4 +23,9 @@ public interface CommanServiceDao2 {
     void sendMail(String message, String to);
 
     int randomOTP();
+
+    void deleteProfilePicFromPath(String fileName) throws IOException;
+
+
+    void deletePostPicFromPath(String fileName) throws IOException;
 }

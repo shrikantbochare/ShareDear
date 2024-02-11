@@ -286,21 +286,33 @@ public class MainController {
     {
         if(p == null)
         {
-            Optional<User> optional = serviceDao.findUserByEmail(email);
-            if (optional.isPresent())
-            {
-                User user = optional.get();
-                user.setPassword(password);
-                securityService.encryptPassword(user);
-                serviceDao.UpdateUser(user);
-                model.addAttribute("mail",email);
-                model.addAttribute("pageName","PassCreationSuccess");
-                return "ShareDear/EmailVerification";
-            }
-            else
-            {
-                return "shareDear/somethingWentWrong";
-            }
+           if(commanService.checkPassValidity(password))
+           {
+               Optional<User> optional = serviceDao.findUserByEmail(email);
+               if (optional.isPresent())
+               {
+                   User user = optional.get();
+                   user.setPassword(password);
+                   securityService.encryptPassword(user);
+                   serviceDao.UpdateUser(user);
+                   model.addAttribute("mail",email);
+                   model.addAttribute("pageName","PassCreationSuccess");
+                   return "ShareDear/EmailVerification";
+               }
+               else
+               {
+                   return "shareDear/somethingWentWrong";
+               }
+           }
+           else
+           {
+               model.addAttribute("password_error","Password must contain" +
+                       " at least one small letter, capital letter, number, and special character like @ or _  " +
+                       "with minimum size of 8 letters");
+               model.addAttribute("mail",email);
+               model.addAttribute("pageName","NewPassCreation");
+               return "ShareDear/EmailVerification";
+           }
         }
         else
         {

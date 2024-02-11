@@ -20,16 +20,14 @@ public class UpdateUserPojo {
             "small letter, may or may not contain numbers and special characters like _  with minimum size of 5 ")
     private String username;
 
-    @NotNull()
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@_/*$])[A-Za-z\\d@_/*$]{8,}$",message = "Password must contain" +
-            " at least one small letter, capital letter, number, and special character like @ or _  " +
-            "with minimum size of 8 letters" )
+
     private String password;
 
     @Email()
     private String email;
 
     @Min(value = 16 , message = "Your age must be greater than or equals to 16")
+    @Max(value = 100, message = "Your age must be less than or equals to 100")
     private int age;
 
     @Past( message = "birthdate must be in past")

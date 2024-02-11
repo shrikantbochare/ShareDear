@@ -324,6 +324,7 @@
       <input type="password" id="typePassX" class="form-control form-control-lg" name="pass" required/>
       <label class="form-label text-dark" for="typePassX">New Password</label>
     </div>
+    <p class="text-white text-center" th:if="${password_error}" th:text="${password_error}"></p>
     <button class="btn btn-outline-light btn-lg px-5" type="submit">Change Password</button>
   </form>
 </div>
