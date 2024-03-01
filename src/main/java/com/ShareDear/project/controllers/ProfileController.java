@@ -4,8 +4,8 @@ import com.ShareDear.project.entities.ProfilePic;
 import com.ShareDear.project.entities.User;
 import com.ShareDear.project.pojo.UpdateUserPojo;
 import com.ShareDear.project.security.SecurityServiceDao;
-import com.ShareDear.project.service.CommanServiceDao;
-import com.ShareDear.project.service.CommanServiceDao2;
+import com.ShareDear.project.service.CommanServiceInterface;
+import com.ShareDear.project.service.CommanServiceInterface2;
 import com.ShareDear.project.service.ServiceDao;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +17,21 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Objects;
 
 
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
 
-    private CommanServiceDao2 commanService2;
+    private CommanServiceInterface2 commanService2;
     private ServiceDao serviceDao;
-    private CommanServiceDao commanService;
+    private CommanServiceInterface commanService;
 
     private SecurityServiceDao securityService;
 
 
     @Autowired
-    public ProfileController(CommanServiceDao2 commanService2, ServiceDao serviceDao, CommanServiceDao commanService, SecurityServiceDao securityService) {
+    public ProfileController(CommanServiceInterface2 commanService2, ServiceDao serviceDao, CommanServiceInterface commanService, SecurityServiceDao securityService) {
         this.commanService2 = commanService2;
         this.serviceDao = serviceDao;
         this.commanService = commanService;
@@ -124,16 +123,17 @@ public class ProfileController {
     public String changeProfilePicture(@ModelAttribute("currentUser") User user, @RequestParam("profile_img") MultipartFile file) throws IOException
     {
         ProfilePic profilePic = user.getProfilePic();
-        if(!profilePic.getImg().equals("default_pic.jpeg"))
+
+        if(!file.isEmpty())
         {
-            commanService2.deleteProfilePicFromPath(profilePic.getImg());
-        }
-            if(!file.isEmpty())
+            if(!profilePic.getImg().equals("default_pic.jpeg"))
             {
-                commanService2.profileUpdate(profilePic,file);
+                commanService2.deleteProfilePicFromPath(profilePic.getImg());
             }
-            serviceDao.updateProfilePic(profilePic);
-            return "redirect:/profile/";
+            commanService2.profileUpdate(profilePic,file);
+        }
+        serviceDao.updateProfilePic(profilePic);
+        return "redirect:/profile/";
     }
 
 

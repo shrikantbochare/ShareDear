@@ -20,7 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class CommanService implements CommanServiceDao{
+public class CommanService implements CommanServiceInterface {
 
     private ServiceDao serviceDao;
     private UserRepository userRepository;

@@ -8,7 +8,7 @@ import java.security.Principal;
 import java.sql.Date;
 import java.util.List;
 
-public interface CommanServiceDao {
+public interface CommanServiceInterface {
 
     public Date getTodayDate();
 

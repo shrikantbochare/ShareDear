@@ -5,8 +5,8 @@ import com.ShareDear.project.entities.ProfilePic;
 import com.ShareDear.project.entities.User;
 import com.ShareDear.project.pojo.CreateUserPojo;
 import com.ShareDear.project.security.SecurityServiceDao;
-import com.ShareDear.project.service.CommanServiceDao;
-import com.ShareDear.project.service.CommanServiceDao2;
+import com.ShareDear.project.service.CommanServiceInterface;
+import com.ShareDear.project.service.CommanServiceInterface2;
 import com.ShareDear.project.service.ServiceDao;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +22,14 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/")
 public class MainController {
-    private CommanServiceDao2 commanService2;
+    private CommanServiceInterface2 commanService2;
     private  ServiceDao serviceDao;
-    private CommanServiceDao commanService;
+    private CommanServiceInterface commanService;
 
     private SecurityServiceDao securityService;
 
     @Autowired
-    public MainController(CommanServiceDao2 commanService2, ServiceDao serviceDao, CommanServiceDao commanService,SecurityServiceDao securityService)
+    public MainController(CommanServiceInterface2 commanService2, ServiceDao serviceDao, CommanServiceInterface commanService, SecurityServiceDao securityService)
     {
         this.commanService2 = commanService2;
         this.serviceDao=serviceDao;

@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-public interface CommanServiceDao2 {
+public interface CommanServiceInterface2 {
 
     public void postUpload(Post post, MultipartFile file) throws IOException;
 

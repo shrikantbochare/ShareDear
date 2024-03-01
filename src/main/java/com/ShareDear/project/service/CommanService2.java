@@ -21,13 +21,13 @@ import java.util.Properties;
 import java.util.Random;
 
 @Service
-public class CommanService2 implements CommanServiceDao2{
+public class CommanService2 implements CommanServiceInterface2 {
 
 
-    private CommanServiceDao commanServiceDao;
+    private CommanServiceInterface commanServiceInterface;
     @Autowired
-    public CommanService2(CommanServiceDao commanServiceDao) {
-        this.commanServiceDao = commanServiceDao;
+    public CommanService2(CommanServiceInterface commanServiceInterface) {
+        this.commanServiceInterface = commanServiceInterface;
     }
 
 
@@ -162,8 +162,8 @@ public class CommanService2 implements CommanServiceDao2{
 
     @Override
     public List<User> mutualFriends(User user, User currentUser) {
-        List<User> friends = commanServiceDao.allFriendsOfMine(user);
-        List<User> friends2 = commanServiceDao.allFriendsOfMine(currentUser);
+        List<User> friends = commanServiceInterface.allFriendsOfMine(user);
+        List<User> friends2 = commanServiceInterface.allFriendsOfMine(currentUser);
         List<User> users = new ArrayList<>();
         for (User friendsOfFirst : friends)
         {

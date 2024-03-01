@@ -38,7 +38,7 @@ public class ExceptionHandler {
     // are invoked before the controller methods annotated with @RequestMapping
     // are invoked. This is because the model object has to be created before
     // any processing starts inside the controller methods.
-    // adds an attribute named msg to all models defined in the controller class.
+    // adds an attribute named currentUser to all models defined in the controller class.
     @ModelAttribute
     public void currentUser(Model model, Principal p)
     {

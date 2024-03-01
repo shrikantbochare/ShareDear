@@ -3,8 +3,8 @@ package com.ShareDear.project.controllers;
 import com.ShareDear.project.entities.Post;
 import com.ShareDear.project.entities.User;
 import com.ShareDear.project.security.SecurityServiceDao;
-import com.ShareDear.project.service.CommanServiceDao;
-import com.ShareDear.project.service.CommanServiceDao2;
+import com.ShareDear.project.service.CommanServiceInterface;
+import com.ShareDear.project.service.CommanServiceInterface2;
 import com.ShareDear.project.service.ServiceDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,23 +17,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
 @RequestMapping("/home")
 public class HomeController {
 
-    private CommanServiceDao2 commanService2;
+    private CommanServiceInterface2 commanService2;
     private ServiceDao serviceDao;
-    private CommanServiceDao commanService;
+    private CommanServiceInterface commanService;
 
     private SecurityServiceDao securityService;
 
 
 
     @Autowired
-    public HomeController(CommanServiceDao2 commanService2, ServiceDao serviceDao, CommanServiceDao commanService, SecurityServiceDao securityService) {
+    public HomeController(CommanServiceInterface2 commanService2, ServiceDao serviceDao, CommanServiceInterface commanService, SecurityServiceDao securityService) {
         this.commanService2 = commanService2;
         this.serviceDao = serviceDao;
         this.commanService = commanService;
